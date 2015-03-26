@@ -117,6 +117,7 @@ Chega um momento nas suas alterações que você deseja salva-las no seu reposit
 	git status
 
 E você terá algo do tipo:
+
 ![git status](http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2011/06/git1_4_git-status.gif)
 
 A primeira coisa que o comando informa é em qual *branch* você está. Se não está no *branch* certo talvez seja a hora de mudar (fazer o *checkout*). Se você adicionou arquivos novos eles aparecerão como ***Untracked files***. Tecnicamente isso quer dizer que não há informações desses arquivos no último *commit* (do seu *branch* atual). Se você modificou arquivos que existem no último *commit* (seja alterar o conteúdo do arquivo ou deletar o arquivo completamente) eles aparecerão como ***Changes not staged for commit***. Ou seja, há mudanças no arquivo mas se você fizer o *commit* agora essas mudanças não serão salvas no repositório. Isso oferece uma grande chance de revisar e incluir no *commit* apenas o suficiente e necessário que você quer salvar e nada a mais. Para adicionar mudanças (seja essas mudanças um arquivo novo, alteração ou exclusão do arquivo) ao próximo *commit* utiliza-se o comando:
@@ -136,3 +137,28 @@ Okay, sabemos quais arquivos serão modificados, **o que** exatamente será modi
 
 	git diff
 	
+Esse comando mostrará exatamente o que foi modificado. Na verdade, ele mostrará o que há de *diff*erente. Se nenhum parâmetro for passado ele mostrará o que mudou e que esteja **Unstaged for commit**. Então, se estiver em dúvida se deve fazer o *add* ou não de algum(ns) arquivo, e não lembrar o que mudou neles, use esse comando para confirmar. Esse comando também pode ser usado com vários parâmetros diferentes parar atender as mas diversas necessidades. Por exemplo:
+
+	git diff --staged
+	
+Mostra do *diff* das mudanças que você fez e *add*icionou. Ou seja, o que será salvo no seu próximo commit. Costumo sempre usar esse comando antes de fazer meu commit.
+
+	git diff <branch1>..<branch2>
+	
+Mostra o que há de *diff*erente entre os dois branch. Mais especificamente, mostra o que mudou no *branch* 2 a partir do *branch* 1.
+
+	git diff <branch1>..
+	
+Mesma coisa que comando anterior, mas como o *branch* 2 não foi definido é considerado o *branch* que você está atualmente. Uso isso para comparar mudanças do meu *branch* com o *master*, por exemplo. Note que esse comando leva em conta todos os *commits* entre os dois *branchs* e não apenas as mudanças locais comparada com o último *commit*, que é o caso dos dois primeiros comandos *diff* apresentados. Lembra que eu falei que um *branch* nada mais é do que um ponteiro para um *commit*? Então isso quer dizer que esse mesmo comando vale para *commits*:
+
+	git diff 672d5ba..92fac12
+	
+Mostra a diferença entre esses dois *commits*. Note que todo *commit* é unicamente identificado por um código *hash*, hexadecimal, de 40 dígitos. Mas você geralmente pode também referência-lo pelos 7 primeiros dígitos desse mesmo código, que é o exemplo acima.
+
+O commando *diff* também permite que você selecione quais os arquivos você deseja ver o *diff* adicionalmente aos parâmetros já citados, e usando as mesmas regras de arquivos do commando *add*. Por exemplo:
+
+	git diff master.. *.java 
+	
+Mostra o que meu *branch* atual tem de *diff*erente do meu *branch master*, mas mostrando apenas os arquivos que terminam em **java**.
+
+Agora que já verificamos as mudanças (*git status*), selecionamos o que queremos salvar (*git add*), e já conferimos realmente o que estaremos salvando (*git diff --staged*), é hora de salvar/gravar/*commit*ar.
