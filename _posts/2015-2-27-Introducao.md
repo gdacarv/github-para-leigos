@@ -69,38 +69,38 @@ Okay, já tenho meu projeto *forkado* (termo abrasileirado que acabei de invent
 
 ##### 1. Criar um *branch*
 
-Você não quer que sua mudança/atualização/correção de bug que ainda está instável, insegura e sem revisão bagunce o código principal, não é mesmo? Para isso utiliza-se um *branch*. Idealmente um *branch* é um conjunto de alterações que fazem sentido de estarem juntas. Por exemplo: implementação de uma nova funcionalidade, correção de um bug, melhoramento de um módulo, etc. Tecnicamente falando, um *branch* nada mais é do que um ponteiro para um *commit*. Criar um *branch* é muito fácil:
+Você não quer que sua mudança/atualização/correção de bug que ainda está instável, insegura e sem revisão bagunce o código principal, não é mesmo? Para isso utiliza-se um *branch*. Idealmente um *branch* é um conjunto de alterações que fazem sentido de estarem juntas. Por exemplo: implementação de uma nova funcionalidade, correção de um bug, melhoramento de um módulo, etc. Tecnicamente falando, um *branch* nada mais é do que um ponteiro para um *[commit](#commit)*. Criar um *branch* é muito fácil:
 
-	git branch <nome-do-branch>
+    git branch <nome-do-branch>
 
 
 Para listar os *branchs* é mais fácil ainda:
 
-	git branch
+    git branch
 
 
 E para trocar sua área de trabalho de um *branch* para outro:
 
-	git checkout <nome-do-branch>
-	
+    git checkout <nome-do-branch>
+    
 
 Se quiser trocar para um novo *branch *(isto é, criar um novo e trocar):
 
-	git checkout -b <nome-do-branch>
-	
+    git checkout -b <nome-do-branch>
+    
 
 Importante lembrar algumas coisas:
 
 1. Geralmente o primeiro e principal *branch* de todos os projetos no Git é o *master*. Isso é apenas uma convenção seguida pela maioria, mas nada lhe impede de excluir o *master* e usar outro *branch* como principal mas não recomendo.
-2. Sempre que criar um *branch* novo, este terá como base o último *commit* (chamado de *HEAD*) do *branch* que você está no momento.  Isso é a mesma coisa que dizer: sempre que criar um *branch* novo, este será uma cópia exata do *branch* que você está no momento. **A menos que se especifique qual *branch* será a base:**
+2. Sempre que criar um *branch* novo, este terá como base o último *[commit](#commit)* (chamado de *HEAD*) do *branch* que você está no momento.  Isso é a mesma coisa que dizer: sempre que criar um *branch* novo, este será uma cópia exata do *branch* que você está no momento. **A menos que se especifique qual *branch* será a base:**
 
 Assim:
 
-	git branch <nome-do-branch> <nome-do-branch-base>
+    git branch <nome-do-branch> <nome-do-branch-base>
 
 Ou:
 
-	git checkout -b <nome-do-branch> <nome-do-branch-base>
+    git checkout -b <nome-do-branch> <nome-do-branch-base>
 
 
 ##### 2. Fazer suas alterações
@@ -112,53 +112,75 @@ Agora que já tem um *branch* específico para o que você quer fazer, é hora d
 
 ##### 3. Verificar e selecionar suas alterações
 
-Chega um momento nas suas alterações que você deseja salva-las no seu repositório. Mas antes disso, temos que ter certeza de que o que vamos salvar é realmente o que queremos que seja modificado no repositório. Isso é importante pois é muito comum alguém modificar vários arquivos, gerar outros automáticamente (binários, executáveis, temporários) e depois incluir tudo junto no repositório, tornando-o uma pasta cheia de lixo cujo *commits* não fazem muito sentido pois são muito grandes e cheio de inutilidades. O primeiro passo é fazer o seguinte comando:
+Chega um momento nas suas alterações que você deseja salva-las no seu repositório. Mas antes disso, temos que ter certeza de que o que vamos salvar é realmente o que queremos que seja modificado no repositório. Isso é importante pois é muito comum alguém modificar vários arquivos, gerar outros automáticamente (binários, executáveis, temporários) e depois incluir tudo junto no repositório, tornando-o uma pasta cheia de lixo cujo *[commit](#commit)s* não fazem muito sentido pois são muito grandes e cheio de inutilidades. O primeiro passo é fazer o seguinte comando:
 
-	git status
+    git status
 
 E você terá algo do tipo:
 
 ![git status](http://media.mediatemple.netdna-cdn.com/wp-content/uploads/2011/06/git1_4_git-status.gif)
 
-A primeira coisa que o comando informa é em qual *branch* você está. Se não está no *branch* certo talvez seja a hora de mudar (fazer o *checkout*). Se você adicionou arquivos novos eles aparecerão como ***Untracked files***. Tecnicamente isso quer dizer que não há informações desses arquivos no último *commit* (do seu *branch* atual). Se você modificou arquivos que existem no último *commit* (seja alterar o conteúdo do arquivo ou deletar o arquivo completamente) eles aparecerão como ***Changes not staged for commit***. Ou seja, há mudanças no arquivo mas se você fizer o *commit* agora essas mudanças não serão salvas no repositório. Isso oferece uma grande chance de revisar e incluir no *commit* apenas o suficiente e necessário que você quer salvar e nada a mais. Para adicionar mudanças (seja essas mudanças um arquivo novo, alteração ou exclusão do arquivo) ao próximo *commit* utiliza-se o comando:
+A primeira coisa que o comando informa é em qual *branch* você está. Se não está no *branch* certo talvez seja a hora de mudar (fazer o *checkout*). Se você adicionou arquivos novos eles aparecerão como ***Untracked files***. Tecnicamente isso quer dizer que não há informações desses arquivos no último *[commit](#commit)* (do seu *branch* atual). Se você modificou arquivos que existem no último *[commit](#commit)* (seja alterar o conteúdo do arquivo ou deletar o arquivo completamente) eles aparecerão como ***Changes not staged for commit***. Ou seja, há mudanças no arquivo mas se você fizer o *[commit](#commit)* agora essas mudanças não serão salvas no repositório. Isso oferece uma grande chance de revisar e incluir no *[commit](#commit)* apenas o suficiente e necessário que você quer salvar e nada a mais. Para adicionar mudanças (seja essas mudanças um arquivo novo, alteração ou exclusão do arquivo) ao próximo *[commit](#commit)* utiliza-se o comando:
 
-	git add <arquivo(s)>
-	
+    git add <arquivo(s)>
+    
 Note que &lt;arquivo(s)&gt; pode ser o caminho para um arquivo, um diretório ou um *fileglob*. Exemplos:
 
-	gid add src/Main.java 		# Adiciona o arquivo src/Main.java
-	git add res/				# Adiciona toda a pasta res, sub-pastas e arquivos. Tenha certeza do que está fazendo.
-	git add *.java				# Adiciona todos os arquivos java em qualquer pasta ou sub-pasta.
-	git add *filesystem*		# Adiciona qualquer arquivo que contenha "filesystem" no seu caminho, ou seja, qualquer arquivo que tenha "filesystem" no seu nome ou no nome de alguma pasta pai.
+    gid add src/Main.java 		# Adiciona o arquivo src/Main.java
+    git add res/				# Adiciona toda a pasta res, sub-pastas e arquivos. Tenha certeza do que está fazendo.
+    git add *.java				# Adiciona todos os arquivos java em qualquer pasta ou sub-pasta.
+    git add *filesystem*		# Adiciona qualquer arquivo que contenha "filesystem" no seu caminho, ou seja, qualquer arquivo que tenha "filesystem" no seu nome ou no nome de alguma pasta pai.
 	
-Execute o comando *status* novamente para checar o andamento da sua seleção. Na verdade, use o *status* sempre que estiver em dúvida. Agora que você adicionou algumas mudanças, esses arquivos aparecerão em ***Changes to be committed*** ("mudanças a serem *commitadas*" no bom e velho pt_BR ~~HUEHUE3~~). Esses serão os arquivos modificados no seu próximo *commit*.
+Execute o comando *status* novamente para checar o andamento da sua seleção. Na verdade, use o *status* sempre que estiver em dúvida. Agora que você adicionou algumas mudanças, esses arquivos aparecerão em ***Changes to be committed*** ("mudanças a serem *commitadas*" no bom e velho pt_BR ~~HUEHUE3~~). Esses serão os arquivos modificados no seu próximo *[commit](#commit)*.
 
 Okay, sabemos quais arquivos serão modificados, **o que** exatamente será modificado nesses arquivos? E eis que lhe apresento um poderoso comando:
 
-	git diff
-	
+    git diff
+    
 Esse comando mostrará exatamente o que foi modificado. Na verdade, ele mostrará o que há de *diff*erente. Se nenhum parâmetro for passado ele mostrará o que mudou e que esteja **Unstaged for commit**. Então, se estiver em dúvida se deve fazer o *add* ou não de algum(ns) arquivo, e não lembrar o que mudou neles, use esse comando para confirmar. Esse comando também pode ser usado com vários parâmetros diferentes parar atender as mas diversas necessidades. Por exemplo:
 
-	git diff --staged
-	
-Mostra do *diff* das mudanças que você fez e *add*icionou. Ou seja, o que será salvo no seu próximo commit. Costumo sempre usar esse comando antes de fazer meu commit.
+    git diff --staged
+    
+Mostra do *diff* das mudanças que você fez e *add*icionou. Ou seja, o que será salvo no seu próximo *[commit](#commit)*. Costumo sempre usar esse comando antes de fazer meu *[commit](#commit)*.
 
-	git diff <branch1>..<branch2>
-	
+    git diff <branch1>..<branch2>
+    
 Mostra o que há de *diff*erente entre os dois branch. Mais especificamente, mostra o que mudou no *branch* 2 a partir do *branch* 1.
 
-	git diff <branch1>..
-	
-Mesma coisa que comando anterior, mas como o *branch* 2 não foi definido é considerado o *branch* que você está atualmente. Uso isso para comparar mudanças do meu *branch* com o *master*, por exemplo. Note que esse comando leva em conta todos os *commits* entre os dois *branchs* e não apenas as mudanças locais comparada com o último *commit*, que é o caso dos dois primeiros comandos *diff* apresentados. Lembra que eu falei que um *branch* nada mais é do que um ponteiro para um *commit*? Então isso quer dizer que esse mesmo comando vale para *commits*:
+    git diff <branch1>..
+    
+Mesma coisa que comando anterior, mas como o *branch* 2 não foi definido é considerado o *branch* que você está atualmente. Uso isso para comparar mudanças do meu *branch* com o *master*, por exemplo. Note que esse comando leva em conta todos os *commits* entre os dois *branchs* e não apenas as mudanças locais comparada com o último *[commit](#commit)*, que é o caso dos dois primeiros comandos *diff* apresentados. Lembra que eu falei que um *branch* nada mais é do que um ponteiro para um *[commit](#commit)*? Então isso quer dizer que esse mesmo comando vale para *commits*:
 
-	git diff 672d5ba..92fac12
-	
-Mostra a diferença entre esses dois *commits*. Note que todo *commit* é unicamente identificado por um código *hash*, hexadecimal, de 40 dígitos. Mas você geralmente pode também referência-lo pelos 7 primeiros dígitos desse mesmo código, que é o exemplo acima.
+    git diff 672d5ba..92fac12
+    
+Mostra a diferença entre esses dois *commits*. Note que todo *[commit](#commit)* é unicamente identificado por um código *hash*, hexadecimal, de 40 dígitos. Mas você geralmente pode também referência-lo pelos 7 primeiros dígitos desse mesmo código, que é o exemplo acima.
 
 O commando *diff* também permite que você selecione quais os arquivos você deseja ver o *diff* adicionalmente aos parâmetros já citados, e usando as mesmas regras de arquivos do commando *add*. Por exemplo:
 
-	git diff master.. *.java 
-	
+    git diff master.. *.java 
+    
 Mostra o que meu *branch* atual tem de *diff*erente do meu *branch master*, mas mostrando apenas os arquivos que terminam em **java**.
 
 Agora que já verificamos as mudanças (*git status*), selecionamos o que queremos salvar (*git add*), e já conferimos realmente o que estaremos salvando (*git diff --staged*), é hora de salvar/gravar/*commit*ar.
+
+##### [4. Salvando as mudanças](id:commit)
+
+Já falamos algumas vezes sobre *commit*. Mas afinal, o que é isso? Um *commit* nada mais é do que um estado do seu projeto. Ou seja, uma referência com nome (*hash*), descrição (comentários), data e nome do autor (e outras informações que não importam agora), para uma versão (estado) de todos os seus arquivos de um projeto. A vantagem é que você pode facilmente mudar de uma versão para outra, ver o que mudou em cada versão (ou numa lista de versões) e até comparar versões (ou lista de versões). Mas antes de tudo, precisamos criar um commit. Para isso temos o comando:
+
+    git commit
+
+Uma tela parecida com essa irá será mostrada (a menos que seu editor padrão seja outro):
+
+![git commit](http://i.stack.imgur.com/DSfuw.png)
+
+Esse é o editor de texto [VIM](http://www.vim.org/). A primeira linha estará em branco e é onde você irá inserir seu comentário sobre esse *commit*. O que vai no comentário cabe a você e a sua equipe, mas sugiro que seja algo descritivo o suficiente para, pelo menos, ter uma ideia do que se trata o *commit*. Toda linha começada por # será ignorada. Haverá um pequeno resumo, muito parecido com o comando *status*, sobre o que você está prestes a *commit*ar. Dê uma última conferida se está no *branch* certo e se as mudanças corretas estão no ***Changes to be commited*** - nem a mais, nem a menos. Para inserir seu comentário, primeiro você tem que mudar o editor para o modo *inserção* pressionando a tecla "**i**". Você notará que o canto inferior esquerdo da janela mudou para:
+
+![insert mode tip](http://snag.gy/Fb5oA.jpg)
+
+Agora você pode digitar seu comentário sobre o *commit*. Quando terminar aperte **ESC** para sair do modo *inserção* e digite "**:wq \<ENTER\>**" (isso mesmo, dois-pontos w q) para salvar e sair (ou **ZZ** - maiúsculo). Se quiser cancelar o *commit*, basta deixar a mensagem vazia (ignorando linhas que começam com #). Feito isso, seu *commit* está criado e você receberá como saída algo do tipo:
+
+![commit created](http://snag.gy/HFsYN.jpg)
+
+Isso é um resumo do seu *commit* recém feito. Contém o nome do *branch*, os primeiros 7 dígitos do *hash* (identificador único do *commit*), o comentário e quantos arquivos e mudanças tiveram. Agora essas mudanças estão salvas no seu repositório local. Mas por enquanto apenas isso. Se você quer ter a segurança de back-up ou compartilhar esse *commit* com outros você precisa enviar o *commit* (ou os *commit*s) para um repositório remoto.
+
+##### 5. Upando para seu repositório remoto
