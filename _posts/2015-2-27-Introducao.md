@@ -163,7 +163,7 @@ Mostra o que meu *branch* atual tem de *diff*erente do meu *branch master*, mas 
 
 Agora que já verificamos as mudanças (*git status*), selecionamos o que queremos salvar (*git add*), e já conferimos realmente o que estaremos salvando (*git diff --staged*), é hora de salvar/gravar/*commit*ar.
 
-##### [4. Salvando as mudanças](id:commit)
+##### <a name="commit"></a>4. Salvando as mudanças
 
 Já falamos algumas vezes sobre *commit*. Mas afinal, o que é isso? Um *commit* nada mais é do que um estado do seu projeto. Ou seja, uma referência com nome (*hash*), descrição (comentários), data e nome do autor (e outras informações que não importam agora), para uma versão (estado) de todos os seus arquivos de um projeto. A vantagem é que você pode facilmente mudar de uma versão para outra, ver o que mudou em cada versão (ou numa lista de versões) e até comparar versões (ou lista de versões). Mas antes de tudo, precisamos criar um commit. Para isso temos o comando:
 
