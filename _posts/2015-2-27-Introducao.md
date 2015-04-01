@@ -196,3 +196,28 @@ Novamente, evito usar o **-a** pois pode colocar mudanças indesejáveis no *com
 Agora essas mudanças estão salvas no seu repositório local. Mas por enquanto apenas isso. Se você quer ter a segurança de back-up ou compartilhar esse *commit* com outros você precisa enviar o *commit* (ou os *commit*s) para um repositório remoto.
 
 ##### 5. Upando para seu repositório remoto
+
+Seu repositório local nada mais é do que uma cópia de um repositório que está hospedado em algum lugar da internet (no GitHub, por exemplo), ou vice-versa. Não há nenhuma diferença entre esses repositórios exceto o local em que estão guardados (e talvez as modificações locais feitas depois da última sincronização). Isso quer dizer que se o repositório online sumir por alguma razão, seu repositório local pode ser totalmente usado para uma nova cópia do repositório remoto.
+
+Se você só possui uma estação de trabalho e é o único que faz mudanças no seu repositório remoto (o que é bastante provável já que colaboradores provavelmente faram mudanças nos próprios repositórios *fork*ados de um principal) então de forma geral você só precisará fazer upload das suas mudanças locais para o seu repositório remoto. Há uma padronização no *git* de chamar o repositório remoto, que foi *fork*ado de outro ou iniciado do zero, de **origin**. Mas especificamente, o **origin** é o repositório usado quando você fez o *clone* para sua máquina. E é para ele que vamos mandar nossos novos *commits*. Se quiser mais informações sobre os repositórios remotos temos o comando:
+
+    git remote
+
+Mas não vamos entrar em detalhes sobre ele agora. Essa etapa é bastante simples. Só queremos mandar pro nosso *origin* todos os *commits* e *branchs* que criamos localmente mas não existem ainda no servidor remoto. Para isso temos o comando:
+
+    git push <repositório> <branch>
+    
+Se o nome do *branch* for omitido, por default será usado o *branch* que você está atualmente (a menos que você modifique o comportamento default). Logo, se fizemos alterações localmente, criamos nossos *commits* no *branch* "implBackground", por exemplo, basta fazermos isso:
+
+    git push origin implBackground
+
+E teremos algo do tipo como output:
+
+![git push output](http://snag.gy/CuSY3.jpg)
+
+Isso mostra o resumo de dados enviados, o endereço do repositório, e qual *commit* foi atualizado para *commit* em cada *branch*. Se você atualizou vários *branchs* e não quer usar o mesmo comando com nomes de *branchs* diferentes, use o parâmetro **--all**:
+
+    git push origin --all
+    
+Isso fará o *push* de todos os *branchs* que foram atualizados localmente. Agora seus *commits* já estão disponíveis no seu repositório remoto (GitHub, por exemplo) e podem ser visualizadas e utilizadas por qualquer um (se o repositório for público) ou por colaboradores com as devidas permissões.
+
