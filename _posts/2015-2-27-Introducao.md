@@ -131,7 +131,9 @@ Note que &lt;arquivo(s)&gt; pode ser o caminho para um arquivo, um diretório ou
     git add *.java				# Adiciona todos os arquivos java em qualquer pasta ou sub-pasta.
     git add *filesystem*		# Adiciona qualquer arquivo que contenha "filesystem" no seu caminho, ou seja, qualquer arquivo que tenha "filesystem" no seu nome ou no nome de alguma pasta pai.
 	
-Execute o comando *status* novamente para checar o andamento da sua seleção. Na verdade, use o *status* sempre que estiver em dúvida. Agora que você adicionou algumas mudanças, esses arquivos aparecerão em ***Changes to be committed*** ("mudanças a serem *commitadas*" no bom e velho pt_BR ~~HUEHUE3~~). Esses serão os arquivos modificados no seu próximo *[commit](#commit)*.
+Execute o comando *status* novamente para checar o andamento da sua seleção. Na verdade, use o *status* sempre que estiver em dúvida. Agora que você adicionou algumas mudanças, esses arquivos aparecerão em ***Changes to be committed*** ("mudanças a serem *commitadas*" no bom e velho pt_BR ~~HUEHUE3~~). Esses serão os arquivos modificados no seu próximo *[commit](#commit)*. Note que o comando **add** não produz nenhuma saída (exceto se nenhum arquivo for encontrado). Se quiser que seja exibido quais arquivos estão sendo de fato *add*icionados use o parâmetro **-v** (v de *verbose*). Por exemplo:
+
+![git add -v](http://snag.gy/PF9OT.jpg)
 
 Okay, sabemos quais arquivos serão modificados, **o que** exatamente será modificado nesses arquivos? E eis que lhe apresento um poderoso comando:
 
@@ -181,6 +183,16 @@ Agora você pode digitar seu comentário sobre o *commit*. Quando terminar apert
 
 ![commit created](http://snag.gy/HFsYN.jpg)
 
-Isso é um resumo do seu *commit* recém feito. Contém o nome do *branch*, os primeiros 7 dígitos do *hash* (identificador único do *commit*), o comentário e quantos arquivos e mudanças tiveram. Agora essas mudanças estão salvas no seu repositório local. Mas por enquanto apenas isso. Se você quer ter a segurança de back-up ou compartilhar esse *commit* com outros você precisa enviar o *commit* (ou os *commit*s) para um repositório remoto.
+Isso é um resumo do seu *commit* recém feito. Contém o nome do *branch*, os primeiros 7 dígitos do *hash* (identificador único do *commit*), o comentário e quantos arquivos e mudanças tiveram. Assim como todo comando do *git*, o comando *commit* também possui alguns parâmetros úteis. Se você não gostou do *VIM*, temos o parâmetro **-m** que permite pular a parte do editor colocando o comentário na linha de comando. Por exemplo:
+
+    git commit -m "Incluindo arquivos de teste de integração."
+    
+Isso irá gerar o *commit* sem precisar abrir o *VIM*. Pessoalmente evito usar esse parâmetro pois, apesar de remover um passo no workflow, visualizar o resumo do *commit* e o *branch* atual nas informações no *VIM* podem evitar que mudanças indesejadas sejam introduzidas no repositório ou num *branch* errado. Outro parâmetro é o **-a** que permite pular a etapa anterior de **add** e incluir toda mudança feita *em arquivos já existentes no repositório*. O que o **-a** faz é executar um **add** antes do commit. E você pode combinar os dois, por exemplo:
+
+    git commit -am "Nova feature de colorir background."
+
+Novamente, evito usar o **-a** pois pode colocar mudanças indesejáveis no *commit*. Mas isso também pode ser evitado usando **status** e **diff** antes do **-a**.
+
+Agora essas mudanças estão salvas no seu repositório local. Mas por enquanto apenas isso. Se você quer ter a segurança de back-up ou compartilhar esse *commit* com outros você precisa enviar o *commit* (ou os *commit*s) para um repositório remoto.
 
 ##### 5. Upando para seu repositório remoto
