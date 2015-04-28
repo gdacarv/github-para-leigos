@@ -221,3 +221,18 @@ Isso mostra o resumo de dados enviados, o endereço do repositório, e qual *com
     
 Isso fará o *push* de todos os *branchs* que foram atualizados localmente. Agora seus *commits* já estão disponíveis no seu repositório remoto (GitHub, por exemplo) e podem ser visualizadas e utilizadas por qualquer um (se o repositório for público) ou por colaboradores com as devidas permissões.
 
+
+##### 6. Colaborando com o projeto
+
+Assumindo que seu repositório remoto foi *fork*ado de um outro repositório, você provavelmente vai querer que suas modificações façam parte do projeto e contribua de alguma forma. Usando o GitHub isso é feito através de um **Pull Request**, que nada mais é do que uma solicitação de inclusão (*merge*) de um determinado número de mudanças (*commits*/*branch*) em algum outro *branch* específico, geralmente o *master*. Recapitulando: você fez uma cópia (*fork*) do repositório principal (*upstream*) na sua conta remota (*origin*) do GitHub, depois baixou (*clone*) seu repositório para sua máquina, fez as mudanças necessárias, criou registrou as mudanças em um ou mais *commits* em um *branch* novo, mandou essas mudanças (*commits*/*branch*) para o seu repositório remoto (*origin*) e agora vai abrir um **Pull Request** para que essas mudanças façam parte do projeto principal. Fazer isso é bem simples, basta abrir a página do GitHub do seu repositório remoto (*origin*) e você terá uma opção de visualizar um *branch*:
+
+![selecionador de branch](http://snag.gy/px5QD.jpg)
+
+Basta selecionar o *branch* que você criou e modificou e clicar no botão ao lado:
+
+![Compare, review, create a pull request button](http://snag.gy/TPDeq.jpg)
+
+Nessa janela você poderá revisar os *commits* que serão incluídos, as mudanças que eles representam nos arquivos e até comentários feitos nos *commits*. Aqui você pode também mudar o repositório e o *branch* que está comparando antes de criar o **pull request** de fato. Depois de revisar as mudanças para ter certeza que escolheu o *branch* certo clique em **"Create pull request"**:
+
+![Create pull request](http://snag.gy/ZfdQp.jpg)
+
